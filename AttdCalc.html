@@ -151,7 +151,6 @@
             border-radius: 10px;
             margin-bottom: 1.5rem;
             border: 1px solid rgba(78, 205, 196, 0.2);
-            transition: opacity 0.3s ease;
         }
 
         button {
@@ -258,19 +257,13 @@
             document.getElementById("attendanceResult").innerHTML = "Current Attendance: " + (attendanceRate * 100).toFixed(2) + "%";
 
             var absentHours = (lectureAbsent * lectureHours) + (tutorialAbsent * tutorialHours) + (practicalAbsent * practicalHours);
-            var semestertype = document.getElementById("semestertype").value;
-            var multiplier = semestertype === "short" ? 2 : 1;
-            var maxHours = (lectureHours + tutorialHours + practicalHours) * week * multiplier;
+            var maxHours = (lectureHours + tutorialHours + practicalHours) * week;
             var maxAttendance = (maxHours - absentHours) / maxHours;
             document.getElementById("maxAttendanceResult").innerHTML = "Maximum Achieveable Attendance: " + (maxAttendance * 100).toFixed(2) + "%";
 
             var hoursAbsentable = maxHours * 0.2;
             var hoursBeforeBar = hoursAbsentable - absentHours;
-
-            let hours = Math.floor(hoursBeforeBar);
-            let minutes = Math.round((hoursBeforeBar - hours) * 60);
-
-            document.getElementById("hoursBeforeBar").innerHTML = "Hours Absent Before Barred: " + hours + "h " + minutes + "m";
+            document.getElementById("hoursBeforeBar").innerHTML = "Hours Absent Before Barred: " + Math.floor(hoursBeforeBar);
         }
 
         function updateHours() {
@@ -279,56 +272,45 @@
 
             switch (subject) {
                 case "empty":
-                    lectureHours = 0;
-                    tutorialHours = 0;
-                    practicalHours = 0;
+                    lectureHours = 0.0;
+                    tutorialHours = 0.0;
+                    practicalHours = 0.0;
                     break;
-                case "wams":
-                    lectureHours = 2;
-                    tutorialHours = 0;
-                    practicalHours = 2;
+                case "eng": // ENGLISH FOR CAREER PREPARATION
+                    lectureHours = 0.0;
+                    tutorialHours = 2.0;
+                    practicalHours = 0.0;
                     break;
-                case "sart":
-                    lectureHours = 2;
-                    tutorialHours = 1;
-                    practicalHours = 2;
+                case "adm": // ADVANCED DATABASE MANAGEMENT
+                    lectureHours = 2.0;
+                    tutorialHours = 0.0;
+                    practicalHours = 2.0;
+                    break;
+                case "ias": // INFORMATION ASSURANCE AND SECURITY
+                    lectureHours = 2.0;
+                    tutorialHours = 1.0;
+                    practicalHours = 0.0;
+                    break;
+                case "ss": // SOFTWARE SECURITY
+                    lectureHours = 2.0;
+                    tutorialHours = 0.0;
+                    practicalHours = 2.0;
+                    break;
+                case "hci": // HUMAN COMPUTER INTERACTION
+                    lectureHours = 2.0;
+                    tutorialHours = 1.0;
+                    practicalHours = 1.0;
+                    break;
+                case "df": // DIGITAL FORENSICS
+                    lectureHours = 2.0;
+                    tutorialHours = 0.0;
+                    practicalHours = 2.0;
                     break;
             }
 
             document.getElementById("lectureHours").value = lectureHours;
             document.getElementById("tutorialHours").value = tutorialHours;
             document.getElementById("practicalHours").value = practicalHours;
-
-            // Enable/disable sections based on hours
-            toggleClassSection("lecture", lectureHours);
-            toggleClassSection("tutorial", tutorialHours);
-            toggleClassSection("practical", practicalHours);
-        }
-
-        function toggleClassSection(classType, hours) {
-            var attendInput = document.getElementById(classType + "Attend");
-            var absentInput = document.getElementById(classType + "Absent");
-            var leaveInput = document.getElementById(classType + "Leave");
-            var section = document.getElementById(classType + "Section");
-
-            if (hours == 0.0) {
-                // Disable inputs and set values to 0
-                attendInput.disabled = true;
-                absentInput.disabled = true;
-                leaveInput.disabled = true;
-                //attendInput.value = 0;
-                //absentInput.value = 0;
-                leaveInput.value = 0;
-                section.style.opacity = "0.5";
-                section.style.pointerEvents = "none";
-            } else {
-                // Enable inputs
-                attendInput.disabled = false;
-                absentInput.disabled = false;
-                leaveInput.disabled = false;
-                section.style.opacity = "1";
-                section.style.pointerEvents = "auto";
-            }
         }
 
         function updateWeeks() {
@@ -348,33 +330,6 @@
             }
 
             document.getElementById("week").value = week;
-            updateMaxClasses();
-        }
-
-        function updateMaxClasses() {
-            var semestertype = document.getElementById("semestertype").value;
-            var maxClasses = 0;
-
-            switch (semestertype) {
-                case "short":
-                    maxClasses = 10;
-                    break;
-                case "long":
-                    maxClasses = 12;
-                    break;
-                default:
-                    maxClasses = 14;
-            }
-
-            document.getElementById("lectureAttend").max = maxClasses;
-            document.getElementById("lectureAbsent").max = maxClasses;
-            document.getElementById("lectureLeave").max = maxClasses;
-            document.getElementById("tutorialAttend").max = maxClasses;
-            document.getElementById("tutorialAbsent").max = maxClasses;
-            document.getElementById("tutorialLeave").max = maxClasses;
-            document.getElementById("practicalAttend").max = maxClasses;
-            document.getElementById("practicalAbsent").max = maxClasses;
-            document.getElementById("practicalLeave").max = maxClasses;
         }
 
     </script>
@@ -384,9 +339,8 @@
     <div class="container">
         <h1>✨ TARUMT Attendance Calculator ✨</h1>
         <div class="warning">
-            ⚠️ <strong>README: </strong><br /> This calculator is designed for RIS. <br />If you are not RIS, you can
-            just ignore the first field (Subject) and
-            directly continue with entering the amount of hours per class.
+            ⚠️ Warning: This page has like no validations because it wasn't intended for public use (also i am lazy to
+            do them)
         </div>
 
         <form onsubmit="calculateAttendance();return false;">
@@ -395,8 +349,12 @@
                 <label>Select Subject</label>
                 <select name="subject" id="subject" onchange="updateHours()">
                     <option value="empty" id="empty" disabled selected>Select Subject</option>
-                    <option value="wams" id="wams">BMIT2023 WEB AND MOBILE SYSTEMS</option>
-                    <option value="sart" id="sart">BMIT2154 SWITCHING AND ROUTING TECHNOLOGIES</option>
+                    <option value="eng" id="eng">BJEL2013  ENGLISH FOR CAREER PREPARATION</option>
+                    <option value="adm" id="adm">BMCS3183  ADVANCED DATABASE MANAGEMENT</option>
+                    <option value="ias" id="ias">BMIT2083  INFORMATION ASSURANCE AND SECURITY</option>
+                    <option value="ss" id="ss">BMIT2183  SOFTWARE SECURITY</option>
+                    <option value="hci" id="hci">BMIT2203  HUMAN COMPUTER INTERACTION</option>
+                    <option value="df" id="df">BMIT3143  DIGITAL FORENSICS</option>
                 </select>
             </div>
 
@@ -406,75 +364,73 @@
                 <div class="input-group">
                     <div>
                         <label>Lecture:</label>
-                        <input type="number" id="lectureHours" step="0.5" min=0 required
-                            oninput="toggleClassSection('lecture', this.value)" />
+                        <input type="number" id="lectureHours" step="any" required />
                     </div>
                     <div>
                         <label>Tutorial:</label>
-                        <input type="number" id="tutorialHours" step="0.5" min=0 required
-                            oninput="toggleClassSection('tutorial', this.value)" />
+                        <input type="number" id="tutorialHours" step="any" required />
                     </div>
                     <div>
                         <label>Practical:</label>
-                        <input type="number" id="practicalHours" step="0.5" min=0 required
-                            oninput="toggleClassSection('practical', this.value)" />
+                        <input type="number" id="practicalHours" step="any" required />
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <h2>📝 Classes attended</h2>
+                <label>The number of classes attended, absent and leave</label>
 
-                <div class="class-type" id="lectureSection">
-                    <h3>🎓 Lecture</h3>
-                    <div class="input-group">
-                        <div>
-                            <label>Attended:</label>
-                            <input type="number" id="lectureAttend" max=14 min=0 required />
-                        </div>
-                        <div>
-                            <label>Absent:</label>
-                            <input type="number" id="lectureAbsent" max=14 min=0 required />
-                        </div>
-                        <div>
-                            <label>Leave:</label>
-                            <input type="number" id="lectureLeave" value="0" max=14 min=0 required />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="class-type" id="tutorialSection">
-                    <h3>📖 Tutorial</h3>
-                    <div class="input-group">
-                        <div>
-                            <label>Attended:</label>
-                            <input type="number" id="tutorialAttend" max=14 min=0 required />
-                        </div>
-                        <div>
-                            <label>Absent:</label>
-                            <input type="number" id="tutorialAbsent" max=14 min=0 required />
-                        </div>
-                        <div>
-                            <label>Leave:</label>
-                            <input type="number" id="tutorialLeave" value="0" max=14 min=0 required />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="class-type" id="practicalSection">
+                <div class="class-type">
                     <h3>🔬 Practical</h3>
                     <div class="input-group">
                         <div>
                             <label>Attended:</label>
-                            <input type="number" id="practicalAttend" max=14 min=0 required />
+                            <input type="number" id="practicalAttend" required />
                         </div>
                         <div>
                             <label>Absent:</label>
-                            <input type="number" id="practicalAbsent" max=14 min=0 required />
+                            <input type="number" id="practicalAbsent" required />
                         </div>
                         <div>
                             <label>Leave:</label>
-                            <input type="number" id="practicalLeave" value="0" max=14 min=0 required />
+                            <input type="number" id="practicalLeave" value="0" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="class-type">
+                    <h3>📖 Tutorial</h3>
+                    <div class="input-group">
+                        <div>
+                            <label>Attended:</label>
+                            <input type="number" id="tutorialAttend" required />
+                        </div>
+                        <div>
+                            <label>Absent:</label>
+                            <input type="number" id="tutorialAbsent" required />
+                        </div>
+                        <div>
+                            <label>Leave:</label>
+                            <input type="number" id="tutorialLeave" value="0" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="class-type">
+                    <h3>🎓 Lecture</h3>
+                    <div class="input-group">
+                        <div>
+                            <label>Attended:</label>
+                            <input type="number" id="lectureAttend" required />
+                        </div>
+                        <div>
+                            <label>Absent:</label>
+                            <input type="number" id="lectureAbsent" required />
+                        </div>
+                        <div>
+                            <label>Leave:</label>
+                            <input type="number" id="lectureLeave" value="0" required />
                         </div>
                     </div>
                 </div>
@@ -485,12 +441,12 @@
                 <label>Semester Type</label>
                 <select name="semestertype" id="semestertype" onchange="updateWeeks()">
                     <option value="empty" id="empty" disabled selected>Select Semester Type</option>
-                    <option value="long" id="long">Long Sem (14 Weeks)</option>
-                    <option value="short" id="short">Short Sem (7 Weeks)</option>
+                    <option value="long" id="long">Long Sem (12 Weeks)</option>
+                    <option value="short" id="short">Short Sem (5 Weeks)</option>
                 </select>
 
                 <label>Total weeks before bar list releases</label>
-                <input type="number" id="week" min="1" readonly />
+                <input type="number" id="week" min="1" required />
             </div>
 
             <button type="submit">✨ Calculate Attendance ✨</button>
@@ -509,8 +465,9 @@
         </div>
 
         <footer>
-            Credit to Kah Seng
+            This thing is kind of easy to make but for some reason no one does it so I am making this.
             <br />
+            Also I am bad at CSS
         </footer>
     </div>
 </body>
