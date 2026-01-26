@@ -264,6 +264,32 @@
             var hoursAbsentable = maxHours * 0.2;
             var hoursBeforeBar = hoursAbsentable - absentHours;
             document.getElementById("hoursBeforeBar").innerHTML = "Hours Absent Before Barred: " + Math.floor(hoursBeforeBar);
+
+            // Calculate how many more classes can be missed
+            var maxAbsentLectures = Math.floor(hoursBeforeBar / lectureHours);
+            var maxAbsentTutorials = Math.floor(hoursBeforeBar / tutorialHours);
+            var maxAbsentPracticals = Math.floor(hoursBeforeBar / practicalHours);
+            
+            var missableText = "You Can Still Miss: ";
+            var missableParts = [];
+            
+            if (lectureHours > 0 && maxAbsentLectures > 0) {
+                missableParts.push(maxAbsentLectures + " Lecture" + (maxAbsentLectures > 1 ? "s" : ""));
+            }
+            if (tutorialHours > 0 && maxAbsentTutorials > 0) {
+                missableParts.push(maxAbsentTutorials + " Tutorial" + (maxAbsentTutorials > 1 ? "s" : ""));
+            }
+            if (practicalHours > 0 && maxAbsentPracticals > 0) {
+                missableParts.push(maxAbsentPracticals + " Practical" + (maxAbsentPracticals > 1 ? "s" : ""));
+            }
+            
+            if (missableParts.length > 0) {
+                missableText += missableParts.join(" OR ");
+            } else {
+                missableText = "⚠️ Cannot miss any more classes!";
+            }
+            
+            document.getElementById("missableClasses").innerHTML = missableText;
         }
 
         function updateHours() {
@@ -606,6 +632,9 @@
             </div>
             <div class="result-item">
                 <h2 id="hoursBeforeBar">⏳ Hours Absent Before Barred</h2>
+            </div>
+            <div class="result-item">
+                <h2 id="missableClasses">🎲 Can Miss More Classes</h2>
             </div>
         </div>
 
