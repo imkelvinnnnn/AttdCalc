@@ -349,12 +349,12 @@
                 <label>Select Subject</label>
                 <select name="subject" id="subject" onchange="updateHours()">
                     <option value="empty" id="empty" disabled selected>Select Subject</option>
-                    <option value="eng" id="eng">BJEL2013  ENGLISH FOR CAREER PREPARATION</option>
-                    <option value="adm" id="adm">BMCS3183  ADVANCED DATABASE MANAGEMENT</option>
-                    <option value="ias" id="ias">BMIT2083  INFORMATION ASSURANCE AND SECURITY</option>
-                    <option value="ss" id="ss">BMIT2183  SOFTWARE SECURITY</option>
-                    <option value="hci" id="hci">BMIT2203  HUMAN COMPUTER INTERACTION</option>
-                    <option value="df" id="df">BMIT3143  DIGITAL FORENSICS</option>
+                    <option value="eng" id="eng">BJEL2013 ENGLISH FOR CAREER PREPARATION</option>
+                    <option value="adm" id="adm">BMCS3183 ADVANCED DATABASE MANAGEMENT</option>
+                    <option value="ias" id="ias">BMIT2083 INFORMATION ASSURANCE AND SECURITY</option>
+                    <option value="ss" id="ss">BMIT2183 SOFTWARE SECURITY</option>
+                    <option value="hci" id="hci">BMIT2203 HUMAN COMPUTER INTERACTION</option>
+                    <option value="df" id="df">BMIT3143 DIGITAL FORENSICS</option>
                 </select>
             </div>
 
@@ -380,57 +380,202 @@
             <div class="form-group">
                 <h2>📝 Classes attended</h2>
                 <label>The number of classes attended, absent and leave</label>
+                <div class="class-type">
+                    <h3>📖 Tutorial</h3>
+                    <div class="input-group">
+                        <div>
+                            <label>Attended:</label>
+                            <select id="tutorialAttend" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Absent:</label>
+                            <select id="tutorialAbsent" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Leave:</label>
+                            <select id="tutorialLeave" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="class-type">
                     <h3>🔬 Practical</h3>
                     <div class="input-group">
                         <div>
                             <label>Attended:</label>
-                            <input type="number" id="practicalAttend" required />
+                            <select id="practicalAttend" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
                         </div>
                         <div>
                             <label>Absent:</label>
-                            <input type="number" id="practicalAbsent" required />
+                            <select id="practicalAbsent" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
                         </div>
                         <div>
                             <label>Leave:</label>
-                            <input type="number" id="practicalLeave" value="0" required />
+                            <select id="practicalLeave" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
-                <div class="class-type">
-                    <h3>📖 Tutorial</h3>
-                    <div class="input-group">
-                        <div>
-                            <label>Attended:</label>
-                            <input type="number" id="tutorialAttend" required />
-                        </div>
-                        <div>
-                            <label>Absent:</label>
-                            <input type="number" id="tutorialAbsent" required />
-                        </div>
-                        <div>
-                            <label>Leave:</label>
-                            <input type="number" id="tutorialLeave" value="0" required />
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="class-type">
                     <h3>🎓 Lecture</h3>
                     <div class="input-group">
                         <div>
                             <label>Attended:</label>
-                            <input type="number" id="lectureAttend" required />
+                            <select id="lectureAttend" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
                         </div>
                         <div>
                             <label>Absent:</label>
-                            <input type="number" id="lectureAbsent" required />
+                            <select id="lectureAbsent" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
                         </div>
                         <div>
                             <label>Leave:</label>
-                            <input type="number" id="lectureLeave" value="0" required />
+                            <select id="lectureLeave" required>
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -441,12 +586,12 @@
                 <label>Semester Type</label>
                 <select name="semestertype" id="semestertype" onchange="updateWeeks()">
                     <option value="empty" id="empty" disabled selected>Select Semester Type</option>
-                    <option value="long" id="long">Long Sem (12 Weeks)</option>
-                    <option value="short" id="short">Short Sem (5 Weeks)</option>
+                    <option value="long" id="long">Long Sem (14 Weeks)</option>
+                    <option value="short" id="short">Short Sem (7 Weeks)</option>
                 </select>
 
                 <label>Total weeks before bar list releases</label>
-                <input type="number" id="week" min="1" required />
+                <input type="number" id="week" min="1" readonly />
             </div>
 
             <button type="submit">✨ Calculate Attendance ✨</button>
