@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TARUMT Attendance Calculator</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
     <style>
         :root {
             --primary-color: #ff6b6b;
@@ -236,6 +238,10 @@
         }
     </style>
     <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js");
+        }
+
         function calculateAttendance() {
             var lectureHours = parseFloat(document.getElementById("lectureHours").value);
             var tutorialHours = parseFloat(document.getElementById("tutorialHours").value);
@@ -269,10 +275,10 @@
             var maxAbsentLectures = Math.floor(hoursBeforeBar / lectureHours);
             var maxAbsentTutorials = Math.floor(hoursBeforeBar / tutorialHours);
             var maxAbsentPracticals = Math.floor(hoursBeforeBar / practicalHours);
-            
+
             var missableText = "You Can Still Miss: ";
             var missableParts = [];
-            
+
             if (lectureHours > 0 && maxAbsentLectures > 0) {
                 missableParts.push(maxAbsentLectures + " Lecture" + (maxAbsentLectures > 1 ? "s" : ""));
             }
@@ -282,13 +288,13 @@
             if (practicalHours > 0 && maxAbsentPracticals > 0) {
                 missableParts.push(maxAbsentPracticals + " Practical" + (maxAbsentPracticals > 1 ? "s" : ""));
             }
-            
+
             if (missableParts.length > 0) {
                 missableText += missableParts.join(" OR ");
             } else {
                 missableText = "⚠️ Cannot miss any more classes!";
             }
-            
+
             document.getElementById("missableClasses").innerHTML = missableText;
         }
 
