@@ -1,7 +1,7 @@
 {
   "name": "TARUMT Attendance Calculator",
   "short_name": "AttdCalc",
-  "start_url": "/AttdCalc.html",
+  "start_url": "/AttdCalc/AttdCalc.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
