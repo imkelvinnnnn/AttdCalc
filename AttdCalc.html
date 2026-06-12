@@ -308,35 +308,30 @@
                     tutorialHours = 0.0;
                     practicalHours = 0.0;
                     break;
-                case "eng": // ENGLISH FOR CAREER PREPARATION
-                    lectureHours = 0.0;
-                    tutorialHours = 2.0;
-                    practicalHours = 0.0;
-                    break;
-                case "adm": // ADVANCED DATABASE MANAGEMENT
-                    lectureHours = 2.0;
-                    tutorialHours = 0.0;
-                    practicalHours = 2.0;
-                    break;
-                case "ias": // INFORMATION ASSURANCE AND SECURITY
+                case "en": // ENTERPRISE NETWORKING
                     lectureHours = 2.0;
                     tutorialHours = 1.0;
-                    practicalHours = 0.0;
+                    practicalHours = 2.0;
                     break;
-                case "ss": // SOFTWARE SECURITY
+                case "sa": // SYSTEMS ADMINISTRATION
                     lectureHours = 2.0;
                     tutorialHours = 0.0;
                     practicalHours = 2.0;
                     break;
-                case "hci": // HUMAN COMPUTER INTERACTION
+                case "vap": // VULNERABILITY ASSESSMENT AND PENETRATION
+                    lectureHours = 2.0;
+                    tutorialHours = 0.0;
+                    practicalHours = 2.0;
+                    break;
+                case "ip": // INTEGRATIVE PROGRAMMING
+                    lectureHours = 2.0;
+                    tutorialHours = 0.0;
+                    practicalHours = 2.0;
+                    break;
+                case "spm": // SOFTWARE PROJECT MANAGEMENT
                     lectureHours = 2.0;
                     tutorialHours = 1.0;
                     practicalHours = 1.0;
-                    break;
-                case "df": // DIGITAL FORENSICS
-                    lectureHours = 2.0;
-                    tutorialHours = 0.0;
-                    practicalHours = 2.0;
                     break;
             }
 
@@ -378,15 +373,14 @@
         <form onsubmit="calculateAttendance();return false;">
             <div class="form-group">
                 <h2>📚 Subject</h2>
-                <label>Select Subject (Ignore if not RISY2S3)</label>
+                <label>Select Subject (Ignore if not RIS Y3 S1)</label>
                 <select name="subject" id="subject" onchange="updateHours()">
                     <option value="empty" id="empty" disabled selected>Select Subject</option>
-                    <option value="eng" id="eng">BJEL2013 ENGLISH FOR CAREER PREPARATION</option>
-                    <option value="adm" id="adm">BMCS3183 ADVANCED DATABASE MANAGEMENT</option>
-                    <option value="ias" id="ias">BMIT2083 INFORMATION ASSURANCE AND SECURITY</option>
-                    <option value="ss" id="ss">BMIT2183 SOFTWARE SECURITY</option>
-                    <option value="hci" id="hci">BMIT2203 HUMAN COMPUTER INTERACTION</option>
-                    <option value="df" id="df">BMIT3143 DIGITAL FORENSICS</option>
+                    <option value="en" id="en">BMIT3084  ENTERPRISE NETWORKING</option>
+                    <option value="sa" id="sa">BMIT3113  SYSTEMS ADMINISTRATION</option>
+                    <option value="vap" id="vap">BMIT3123  VULNERABILITY ASSESSMENT AND PENETRATION</option>
+                    <option value="ip" id="ip">BMIT3173  INTEGRATIVE PROGRAMMING</option>
+                    <option value="spm" id="spm">BMSE3153  SOFTWARE PROJECT MANAGEMENT</option>
                 </select>
             </div>
 
